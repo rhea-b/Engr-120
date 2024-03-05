@@ -1,3 +1,9 @@
 .background{
-    background-color: bisque;
+    background-color: #fdf2e3;
+}
+.heading-word{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: large;
+    font-weight: 200;
+    color:#d44038;
 }
