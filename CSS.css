@@ -3,7 +3,9 @@
 }
 .heading-word{
     font-family: 'Courier New', Courier, monospace;
-    font-size: 200px;
+    font-size: 100px;
     font-weight: bolder;
     color:#d44038;
+    text-align: center;
+    padding: auto;
 }
