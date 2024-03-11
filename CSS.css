@@ -1,6 +1,4 @@
-:root{
-    --bs-navbar-rgb
-}
+
 
 .background{
     background-color: #fdf2e3;
@@ -25,10 +23,40 @@
     padding-bottom: 0.5rem;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    --bs-bg-opacity: 1;
-    background-color: rgba(var(--bs-navbar-rgb), var(--bs-bg-opacity));
   }
 
-  .navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
-    color: #fff;
+  .navbar-brand {
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .navbar-collapse {
+    flex-basis: 100%;
+    flex-grow: 1;
+    align-items: center;
+  }
+
+  .p-lg-5 {
+    padding: 3rem !important;
+  }
+
+  .navbar-nav {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+  }
+
+  .ms-auto {
+    margin-left: auto !important;
+  }
+
+  .mb-2 {
+    margin-bottom: 0.5rem !important;
+    margin-bottom: 0 !important;
   }
