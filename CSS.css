@@ -1,6 +1,11 @@
+:root{
+    --bs-navbar-rgb
+}
+
 .background{
     background-color: #fdf2e3;
 }
+
 .heading-word{
     font-family: 'Courier New', Courier, monospace;
     font-size: 700%;
@@ -21,9 +26,9 @@
     flex-wrap: nowrap;
     justify-content: flex-start;
     --bs-bg-opacity: 1;
-    background-color: rgba(var(--bs-menu-thingy-rgb), var(--bs-bg-opacity));
+    background-color: rgba(var(--bs-navbar-rgb), var(--bs-bg-opacity));
   }
-  
+
   .navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
     color: #fff;
   }
