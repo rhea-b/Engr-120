@@ -3,9 +3,27 @@
 }
 .heading-word{
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1000%;
+    font-size: 700%;
     font-weight: bolder;
     color:#d44038;
     text-align: center;
     padding: auto;
 }
+
+.navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-menu-thingy-rgb), var(--bs-bg-opacity));
+  }
+  
+  .navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
+    color: #fff;
+  }
