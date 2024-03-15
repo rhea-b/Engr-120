@@ -13,23 +13,56 @@
         <link href="https://upload.wikimedia.org/wikipedia/commons/a/ae/Bus_icon_white_and_blue_background.svg" rel="shortcut icon" />
         <!-- link to css-->
         <link href="CSS.css" rel="stylesheet" />
+        <style>
+            #navbar {
+              overflow: hidden;
+              background-color: #333;
+            }
+            
+            #navbar a {
+              float: left;
+              display: block;
+              color: #f2f2f2;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+              font-size: 17px;
+            }
+            
+            #navbar a:hover {
+              background-color: #ddd;
+              color: black;
+            }
+            
+            #navbar a.active {
+              background-color: #04AA6D;
+              color: white;
+            }
+            
+            .content {
+              padding: 16px;
+            }
+            
+            .sticky {
+              position: fixed;
+              top: 0;
+              width: 100%;
+            }
+            
+            .sticky + .content {
+              padding-top: 60px;
+            }
+            </style>
     </head>
 <body class="background">
     <!--navigation bar-->
-    <nav class="navbar">
-        <div class="container px-lg-5">
-            <a class="navbar-brand">Victoria Bus Stop</a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Menu</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Character list.html">Character List</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about us.html">About Us</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <div id="navbar">
+        <a class="active" href="javascript:void(0)">Home</a>
+        <a href="javascript:void(0)">News</a>
+        <a href="javascript:void(0)">Contact</a>
+    </div>
 <h1 class="heading-word">Victoria Bus</h1>
-<div>
+<div >
     <img src="victoria-downtown.gif" alt ="victoria map">
 </div>
 

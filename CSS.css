@@ -12,6 +12,10 @@
     text-align: center;
     padding: auto;
 }
+.map-padding{
+  padding: 100%;
+}
+
 
 .navbar {
     position: relative;
@@ -50,13 +54,4 @@
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
-  }
-
-  .ms-auto {
-    margin-left: auto !important;
-  }
-
-  .mb-2 {
-    margin-bottom: 0.5rem !important;
-    margin-bottom: 0 !important;
   }
