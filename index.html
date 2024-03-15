@@ -54,10 +54,10 @@
             }
 
             .img-map{
-                z-index: 3;
+                position:relative;
             }
             .img-pins{
-                z-index: 1;
+                position: absolute;
             }
             </style>
     </head>
@@ -69,9 +69,12 @@
         <a href="javascript:void(0)">About Us</a>
     </div>
 <h1 class="heading-word">Victoria Bus</h1>
-<div >
-    <img src="victoria-downtown.gif" alt ="victoria map" class="map-padding img-map">
-    <img src="bus-stop-empty.PNG" alt="bus stop empty" class="img-pins image-pins ">
+<div class="img-map" >
+    <img src="victoria-downtown.gif" alt ="victoria map" class="map-padding">
+    <div class="img-pins">
+        <img src="bus-stop-empty.PNG" alt="bus stop empty" class="image-pins">
+    </div>
+    
 </div>
 
 </body>
