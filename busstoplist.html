@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- website little icon on the tab-->
+        <link href="https://upload.wikimedia.org/wikipedia/commons/a/ae/Bus_icon_white_and_blue_background.svg" rel="shortcut icon" />
+        <link href="CSS.css" rel="stylesheet" />
+        <style>
+            #navbar {
+              overflow: hidden;
+              background-color: #D46E68;
+            }
+            
+            #navbar a {
+              float: left;
+              display: block;
+              color: #f2f2f2;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+              font-size: 17px;
+            }
+            
+            #navbar a:hover {
+              background-color: #EFA9A5;
+              color: black;
+            }
+            
+            #navbar a.active {
+              background-color: #d44038;
+              color: white;
+            }
+            
+            .content {
+              padding: 16px;
+            }
+            
+            .sticky {
+              position: fixed;
+              top: 0;
+              width: 100%;
+            }
+            
+            .sticky + .content {
+              padding-top: 60px;
+            }
+
+            .img-map{
+                float:center;
+                position:relative;
+            }
+            .img-pinsstation1{
+                position: absolute;
+                top:7%;
+                right:15%;
+            }
+            .img-pinsstation2{
+                position: absolute;
+                top:48%;
+                right:38%;
+            }
+            </style>
+    </head>
+    <body class="background">
+    <!--navigation bar-->
+    <div id="navbar">
+        <a class="active" href="index.html">Home</a>
+        <a href="busstoplist.html">Bus Stop list</a></a>
+        <a href="aboutus.html">About Us</a>
+    </div>
+    </body>
+</html>
