@@ -10,6 +10,6 @@ conversion_factor = 3.3/(65535)
 while True:
     reading = sensor.read_u16()*conversion_factor
     if (reading > 3.0):
-        led_onboard.value(1)
+        led_onboard.value(1) #led on
     else:
-        led_onboard.value(0)
+        led_onboard.value(0) #led off
