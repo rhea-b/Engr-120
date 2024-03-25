@@ -73,6 +73,23 @@
                 font-family: 'Trebuchet MS';
                 color: #0e4e2f;
             }
+
+            .circle1 {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 50px;
+            margin-top: 6%;
+          }
+          .circle2 {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 50px;
+            margin-top: 12%;
+          }
             </style>
     </head>
     <body class="background">
@@ -85,7 +102,7 @@
     <!--bus stop 1-->
     <div>
         <a href="station1.html">
-        <img src="bus-stop-empty.PNG" style="width:10%;height:auto;padding:5%;">
+          <div class="circle1" id="station1buzzer" style="background-color: greenyellow;padding:5%;"></div>
         </a>
         <h2 class="heading2">
             Station 1
@@ -97,7 +114,7 @@
     <!--bus stop 2-->
     <div>
         <a href="station2.html">
-        <img src="bus-stop-full.PNG" style="width:10%;height:auto;padding:5%;">
+          <div class="circle2" id="station2buzzer" style="background-color: red;padding:5%;"></div>
         </a>
         <h2 class="heading4">
             Station 2

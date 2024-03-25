@@ -19,6 +19,8 @@ import usocket as socket
 import utime as time
 import _thread
 import json
+#import uasyncio as asyncio
+#from aoihttp import web
 # -------------------------------------------------------------------------
 
 # -------------------------------------------------------------------------
@@ -84,13 +86,85 @@ def web_page():
 # In the Script section some changes would be needed (mostly updating variable names and adding lines for extra elements). 
 
     with open('index.html', 'r') as f:
-    html = f.read()\
+    html = f.read()
     
     html = """<html><head>
     <title>Pico Web Server</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="data:,">
-    <style>
+    <head>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- website little icon on the tab-->
+        <link href="https://upload.wikimedia.org/wikipedia/commons/a/ae/Bus_icon_white_and_blue_background.svg" rel="shortcut icon" />
+        <link href="CSS.css" rel="stylesheet" />
+        <style>
+            /*navigation bar css*/
+            #navbar {
+              overflow: hidden;
+              background-color: #D46E68;
+            }
+            
+            #navbar a {
+              float: left;
+              display: block;
+              color: #f2f2f2;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+              font-size: 17px;
+            }
+            
+            #navbar a:hover {
+              background-color: #EFA9A5;
+              color: black;
+            }
+            
+            #navbar a.active {
+              background-color: #d44038;
+              color: white;
+            }
+            
+            .content {
+              padding: 16px;
+            }
+            
+            .sticky {
+              position: fixed;
+              top: 0;
+              width: 100%;
+            }
+            
+            .sticky + .content {
+              padding-top: 60px;
+            }
+            /*css for texts*/
+            .heading2{
+                position: absolute; left: 250px; top: 130px;font-family: 'Courier New', Courier, monospace;
+                font-size: 300%;
+                font-weight: bolder;
+                color:#d44038;
+                text-align: center;
+                padding: auto;
+            }
+            .heading3{
+                position: absolute; left: 260px; top: 230px; 
+                font-family: 'Trebuchet MS';
+                color: #0e4e2f;
+
+            }
+            .heading4{
+                position: absolute; left: 250px; top: 510px;font-family: 'Courier New', Courier, monospace;
+                font-size: 300%;
+                font-weight: bolder;
+                color:#d44038;
+                text-align: center;
+                padding: auto;
+            }
+            .heading5{
+                position: absolute; left: 260px; top: 610px;font-family: 'Courier New', Courier, monospace;
+                font-family: 'Trebuchet MS';
+                color: #0e4e2f;
+            }
         html {
             font-family: Helvetica;
             text-align: center;
@@ -106,13 +180,15 @@ def web_page():
         
 
         .circle {
-            width: 20px;
+            width: 50px;
             height: 20px;
             border-radius: 50%;
             display: inline-block;
             margin-left: 10px;
         }
-    </style>
+        </style>
+    </head>
+    
     
     <script>
         function updateStatus() {
@@ -134,12 +210,41 @@ def web_page():
         setInterval(updateStatus, 1000); // Refresh every 1 second
     </script>
     </head>
-    <body>
+    <body class="background">
      
     <p>RedLED Status: <strong id="RedLEDStatus">""" + redLED_status + """</strong>
     <div class="circle" id="buzzerIndicator" style="background-color: """ + LED_color + """;"></div></p>
     <div class="circle" id="greenLED" style="background-color: """ + greenLED + """;"></div></p>    
-    
+    <!--navigation bar-->
+    <div id="navbar">
+        <a class="active" href="index.html">Home</a>
+        <a href="busstoplist.html">Bus Stop list</a></a>
+        <a href="aboutus.html">About Us</a>
+    </div>
+    <!--bus stop 1-->
+    <div>
+        <a href="station1.html">
+        <div class"circle" id="station1buzzer" style="background-color: """+ LED_color + """;"></div>
+        </a>
+        <h2 class="heading2">
+            Station 1
+        </h2>
+        <h3 class="heading3">
+            Whatisthis Rd
+        </h3>
+    </div>
+    <!--bus stop 2-->
+    <div>
+        <a href="station2.html">
+        <img src="bus-stop-full.PNG" style="width:10%;height:auto;padding:5%;">
+        </a>
+        <h2 class="heading4">
+            Station 2
+        </h2>
+        <h3 class="heading5">
+            Whatisthis Rd
+        </h3>
+    </div>
     </body>
     </html>"""
     return html
