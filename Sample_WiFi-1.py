@@ -211,10 +211,6 @@ def web_page():
     </script>
     </head>
     <body class="background">
-     
-    <p>RedLED Status: <strong id="RedLEDStatus">""" + redLED_status + """</strong>
-    <div class="circle" id="buzzerIndicator" style="background-color: """ + LED_color + """;"></div></p>
-    <div class="circle" id="greenLED" style="background-color: """ + greenLED + """;"></div></p>    
     <!--navigation bar-->
     <div id="navbar">
         <a class="active" href="index.html">Home</a>
@@ -224,7 +220,7 @@ def web_page():
     <!--bus stop 1-->
     <div>
         <a href="station1.html">
-        <div class"circle" id="station1buzzer" style="background-color: """+ LED_color + """;"></div>
+          <div class="circle1" id="station1buzzer" style="background-color:"""+ LED_color +""";padding:5%;"></div>
         </a>
         <h2 class="heading2">
             Station 1
@@ -236,7 +232,7 @@ def web_page():
     <!--bus stop 2-->
     <div>
         <a href="station2.html">
-        <img src="bus-stop-full.PNG" style="width:10%;height:auto;padding:5%;">
+          <div class="circle2" id="station2buzzer" style="background-color:""" + LED_color + """;padding:5%;"></div>
         </a>
         <h2 class="heading4">
             Station 2
