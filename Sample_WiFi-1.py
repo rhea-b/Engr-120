@@ -83,6 +83,9 @@ def web_page():
 # Style section below can be changed.
 # In the Script section some changes would be needed (mostly updating variable names and adding lines for extra elements). 
 
+    with open('index.html', 'r') as f:
+    html = f.read()\
+    
     html = """<html><head>
     <title>Pico Web Server</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -136,7 +139,7 @@ def web_page():
     <p>RedLED Status: <strong id="RedLEDStatus">""" + redLED_status + """</strong>
     <div class="circle" id="buzzerIndicator" style="background-color: """ + LED_color + """;"></div></p>
     <div class="circle" id="greenLED" style="background-color: """ + greenLED + """;"></div></p>    
-  
+    
     </body>
     </html>"""
     return html

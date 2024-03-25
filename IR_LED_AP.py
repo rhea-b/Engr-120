@@ -1,5 +1,5 @@
 import machine
-import network
+import networkemitter
 import usocket as socket
 import utime as time
 import _thread
@@ -60,6 +60,8 @@ def web_page():
     ir_emitter_color = "purple" if ir_emitter_status == "ON" else "black"
     buzzer_color = "red" if redLED_status == "On" else "gray"
     
+    
+
     html = """<html><head>
     <title>Pico Web Server</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -105,7 +107,7 @@ def web_page():
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
-                    var data = JSON.parse(xhr.responseText);
+                    var data = JSON.parse(xhr.responseText);us
                     document.getElementById("irEmitterStatus").innerHTML = data.irEmitterStatus;
                     var irEmitterColor = data.irEmitterStatus === "ON" ? "purple" : "black";
                     document.getElementById("irEmitterIndicator").style.backgroundColor = irEmitterColor;
