@@ -69,6 +69,20 @@
                 top:48%;
                 right:38%;
             }
+            .circle1 {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 10px;
+        }
+            .circle2 {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 10px;
+        }
             </style>
     </head>
 <body class="background">
@@ -86,13 +100,13 @@
     <!--pin for station 1-->
     <div class="img-pinsstation1 image-pins">
         <a href="station1.html">
-        <img src="bus-stop-empty.PNG" alt="bus stop empty" style="width:50px;height:relative;">
+        <div class="circle1" id="station1map" style="background-color: greenyellow;padding:5%;"></div>
         </a>
     </div>
     <!--pin for station 2-->
     <div class="img-pinsstation2">
         <a href="station2.html">
-            <img src="bus-stop-full.PNG" alt="bus stop full" style="width:50px;height:relative;">
+          <div class="circle2" id="station2map" style="background-color: red;padding:5%;"></div>
         </a>
     </div>
 </div>
