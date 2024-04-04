@@ -80,7 +80,7 @@ print(ap.ifconfig())
 # Define HTTP response
 def main_page():
     redLED_status = get_redLED_status()
-    LED_color = "red" if redLED_status == "On" else "grey"
+    LED_color = "red" if redLED_status == "On" else "greenyellow"
     
 # Modify the html portion appropriately.
 # Style section below can be changed.
@@ -197,45 +197,48 @@ def main_page():
         setInterval(updateStatus, 1000); // Refresh every 1 second
         </script>
     </head>
-<body class="background">
-    <!--navigation bar-->
-    <div id="navbar">
-        <a class="active" href="index.html">Home</a>
-        <a href="busstoplist.html">Bus Stop list</a></a>
-        <a href="aboutus.html">About Us</a>
-    </div>
-    <!--header-->
-<h1 class="heading-word">Victoria Bus</h1>
-<!--map component-->
-<div class="img-map" >
-    <img src="victoria-downtown.gif" alt ="victoria map" class="map-padding">
-    <!--pin for station 1-->
-    <div class="img-pinsstation1 image-pins">
-        <a href="station1.html">
-        <div class="circle1" id="station1map" style="background-color:"""+ LED_color +""";padding:5%;"></div>
-        </a>
-    </div>
-    <!--pin for station 2-->
-    <div class="img-pinsstation2">
-        <a href="station2.html">
-          <div class="circle2" id="station2map" style="background-color: """+ LED_color +""";padding:5%;"></div>
-        </a>
-    </div>
-    </div>
-    </body>
-    </html>"""
+    <body class="background">
+        <!--navigation bar-->
+        <div id="navbar">
+            <a class="active" href="index.html">Home</a>
+            <a href="busstoplist.html">Bus Stop list</a></a>
+            <a href="aboutus.html">About Us</a>
+        </div>
+        <!--header-->
+        <h1 class="heading-word">Victoria Bus</h1>
+        <!--map component-->
+        <div class="img-map" >
+        <img src="victoria-downtown.gif" alt ="victoria map" class="map-padding">
+        <!--pin for station 1-->
+        <div class="img-pinsstation1 image-pins">
+            <a href="station1.html">
+                <div class="circle1" id="station1map" style="background-color:"""+ LED_color +""";padding:5%;"></div>
+            </a>
+        </div>
+        <!--pin for station 2-->
+        <div class="img-pinsstation2">
+            <a href="station2.html">
+                <div class="circle2" id="station2map" style="background-color: """+ LED_color +""";padding:5%;"></div>
+            </a>
+        </div>
+        </div>
+        </body>
+        </html>"""
     return html
 
 def busstoplist():
     redLED_status = get_redLED_status()
     LED_color = "red" if redLED_status == "On" else "green"
-    html = """"""
+    html = """
+    
+    """
     return html
 
 def get_station1():
     redLED_status = get_redLED_status()
     LED_color = "red" if redLED_status == "On" else "green"
-    html = """"""
+    html = """
+    """
     return html
 
 def busstoplist():
