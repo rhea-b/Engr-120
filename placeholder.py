@@ -26,12 +26,18 @@
         }
     </style>
     <script>
-        document.getElementById("s1light").innerHTML = data.RedLEDStatus;
-        document.getElementById("s1fan").innerHTML = data.RedLEDStatus;
-        document.getElementById("s1heater").innerHTML = data.RedLEDStatus;
-        document.getElementById("s2light").innerHTML = data.RedLEDStatus;
-        document.getElementById("s2fan").innerHTML = data.RedLEDStatus;
-        document.getElementById("s2heater").innerHTML = data.RedLEDStatus;
+        document.getElementById("s1light").style.color= s1light;
+        var s1light = data.RedLEDStatus === "On" ? "greenyellow" : "red";
+        document.getElementById("s1fan").style.color= s1fan;
+        var s1fan = data.RedLEDStatus === "On" ? "greenyellow" : "red";
+        document.getElementById("s1heater").style.color= s1heater;
+        var s1heater = data.RedLEDStatus === "On" ? "greenyellow" : "red";
+        document.getElementById("s2light").style.color= s2light;
+        var s2light = data.RedLEDStatus === "On" ? "greenyellow" : "red";
+        document.getElementById("s2fan").style.color= s2fan;
+        var s2fan = data.RedLEDStatus === "On" ? "greenyellow" : "red";
+        document.getElementById("s2heater").style.color= s2heater;
+        var s2heater = data.RedLEDStatus === "On" ? "greenyellow" : "red";
     </script>
     
     </head>
