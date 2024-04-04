@@ -79,8 +79,8 @@ print(ap.ifconfig())
 # 
 # Define HTTP response
 def main_page():
-    redLED_status = get_redLED_status()
-    LED_color = "red" if redLED_status == "On" else "greenyellow"
+    led_IR_status = get_led_IR_status()
+    LED_color = "red" if led_IR_status == "On" else "greenyellow"
     
 # Modify the html portion appropriately.
 # Style section below can be changed.
@@ -176,14 +176,6 @@ def main_page():
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     var data = JSON.parse(xhr.responseText);
-                   
-                    document.getElementById("RedLEDStatus").innerHTML = data.RedLEDStatus;
-                    var buzzerColor = data.RedLEDStatus === "On" ? "red" : "gray";
-                    document.getElementById("buzzerIndicator").style.backgroundColor = buzzerColor;
-                    var greenLED = data.RedLEDStatus === "Off" ? "green" : "black";
-                    document.getElementById("greenLED").style.backgroundColor = greenLED;
-                    var peepeepoopoo = data.RedLEDStatus === "Off" ? "green" : "red";
-                    document.getElementById("textonoff").style.color= peepeepoopoo;
 
                     document.getElementById("station1map").style.backgroundColor = station1map;
                     var station1map = data.LED_IR_status === "On" ? "red" : "greenyellow";
@@ -227,13 +219,153 @@ def main_page():
     return html
 
 def busstoplist():
-    led_Light_status = get_led_Light_status()
-    led_Temp1_status = get_led_Temp1_status()
-    led_Temp2_status = get_led_Temp2_status()
-    led_Light_color = "red" if led_Light_status == "On" else "green"
-    led_Temp1_color = "red" if led_Temp1_status == "On" else "green"
-    led_Temp2_color = "red" if led_Temp2_status == "On" else "green"
-    html = """
+    led_IR_status = get_led_IR_status()
+    LED_color = "red" if led_IR_status == "On" else "greenyellow"
+    
+    html = """<html>
+    <head>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- website little icon on the tab-->
+        <link href="https://upload.wikimedia.org/wikipedia/commons/a/ae/Bus_icon_white_and_blue_background.svg" rel="shortcut icon" />
+        <link href="CSS.css" rel="stylesheet" />
+        <style>
+            /*navigation bar css*/
+            #navbar {
+              overflow: hidden;
+              background-color: #D46E68;
+            }
+            
+            #navbar a {
+              float: left;
+              display: block;
+              color: #f2f2f2;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+              font-size: 17px;
+            }
+            
+            #navbar a:hover {
+              background-color: #EFA9A5;
+              color: black;
+            }
+            
+            #navbar a.active {
+              background-color: #d44038;
+              color: white;
+            }
+            
+            .content {
+              padding: 16px;
+            }
+            
+            .sticky {
+              position: fixed;
+              top: 0;
+              width: 100%;
+            }
+            
+            .sticky + .content {
+              padding-top: 60px;
+            }
+            /*css for texts*/
+            .heading2{
+                position: absolute; left: 250px; top: 130px;font-family: 'Courier New', Courier, monospace;
+                font-size: 300%;
+                font-weight: bolder;
+                color:#d44038;
+                text-align: center;
+                padding: auto;
+            }
+            .heading3{
+                position: absolute; left: 260px; top: 230px; 
+                font-family: 'Trebuchet MS';
+                color: #0e4e2f;
+
+            }
+            .heading4{
+                position: absolute; left: 250px; top: 510px;font-family: 'Courier New', Courier, monospace;
+                font-size: 300%;
+                font-weight: bolder;
+                color:#d44038;
+                text-align: center;
+                padding: auto;
+            }
+            .heading5{
+                position: absolute; left: 260px; top: 610px;font-family: 'Courier New', Courier, monospace;
+                font-family: 'Trebuchet MS';
+                color: #0e4e2f;
+            }
+
+            .circle1 {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 50px;
+            margin-top: 6%;
+          }
+          .circle2 {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 50px;
+            margin-top: 12%;
+          }
+            </style>
+            <script>
+        function updateStatus() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var data = JSON.parse(xhr.responseText);
+
+                    document.getElementById("station1map").style.backgroundColor = station1map;
+                    var station1map = data.LED_IR_status === "On" ? "red" : "greenyellow";
+                    document.getElementById("station2map").style.backgroundColor = station2map;
+                    var station2map = data.LED_IR_status === "On" ? "greenyellow" : "red";
+                }
+            };
+            xhr.open("GET", "/status", true);
+            xhr.send();
+        }
+        setInterval(updateStatus, 1000); // Refresh every 1 second
+        </script>
+    </head>
+    <body class="background">
+    <!--navigation bar-->
+    <div id="navbar">
+        <a class="active" href="index.html">Home</a>
+        <a href="busstoplist.html">Bus Stop list</a></a>
+        <a href="aboutus.html">About Us</a>
+    </div>
+    <!--bus stop 1-->
+    <div>
+        <a href="station1.html">
+          <div class="circle1" id="station1buzzer" style="background-color: """+ LED_color +""";padding:5%;"></div>
+        </a>
+        <h2 class="heading2">
+            Station 1
+        </h2>
+        <h3 class="heading3">
+            Whatisthis Rd
+        </h3>
+    </div>
+    <!--bus stop 2-->
+    <div>
+        <a href="station2.html">
+          <div class="circle2" id="station2buzzer" style="background-color: """+ LED_color +""";padding:5%;"></div>
+        </a>
+        <h2 class="heading4">
+            Station 2
+        </h2>
+        <h3 class="heading5">
+            Whatisthis Rd
+        </h3>
+    </div>
+    </body>
+</html>
     
     """
     return html
@@ -242,9 +374,9 @@ def get_station1():
     led_Light_status = get_led_Light_status()
     led_Temp1_status = get_led_Temp1_status()
     led_Temp2_status = get_led_Temp2_status()
-    led_Light_color = "red" if led_Light_status == "On" else "green"
-    led_Temp1_color = "red" if led_Temp1_status == "On" else "green"
-    led_Temp2_color = "red" if led_Temp2_status == "On" else "green"
+    led_Light_color = "red" if led_Light_status == "Off" else "green"
+    led_Temp1_color = "red" if led_Temp1_status == "Off" else "green"
+    led_Temp2_color = "red" if led_Temp2_status == "Off" else "green"
 
     html = """<html>
 <head>
@@ -321,6 +453,32 @@ def get_station1():
             font-size: 200%;
         }
     </style>
+    <script>
+        function updateStatus() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var data = JSON.parse(xhr.responseText);
+                   
+                    document.getElementById("led_Light_status").innerHTML = data.led_Light_status;
+                    document.getElementById("led_Temp1_status").innerHTML = data.led_Temp1_status;
+                    document.getElementById("led_Temp2_status").innerHTML = data.led_Temp2_status;
+
+                    var s1light = data.RedLEDStatus === "On" ? "greenyellow" : "red";
+                    document.getElementById("s1light").style.color= s1light;
+
+                    var s1fan = data.RedLEDStatus === "On" ? "greenyellow" : "red";
+                    document.getElementById("s1fan").style.color= s1fan;
+
+                    var s1heater = data.RedLEDStatus === "On" ? "greenyellow" : "red";
+                    document.getElementById("s1heater").style.color= s1heater;
+                }
+            };
+            xhr.open("GET", "/status", true);
+            xhr.send();
+        }
+        setInterval(updateStatus, 1000); // Refresh every 1 second
+        </script>
     
     <title>
         Station 1
@@ -371,11 +529,234 @@ def get_station1():
     """
     return html
 
-def busstoplist():
-    redLED_status = get_redLED_status()
-    LED_color = "red" if redLED_status == "On" else "green"
-    html = """"""
+def get_station2():
+    led_Light_status = get_led_Light_status()
+    led_Temp1_status = get_led_Temp1_status()
+    led_Temp2_status = get_led_Temp2_status()
+    led_Light_color = "red" if led_Light_status == "Off" else "green"
+    led_Temp1_color = "red" if led_Temp1_status == "Off" else "green"
+    led_Temp2_color = "red" if led_Temp2_status == "Off" else "green"
+    html = """<html>
+<head>
+    <title>Station 2</title>
+        <!-- i do not know what this does but slay-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- website little icon on the tab-->
+        <link href="https://upload.wikimedia.org/wikipedia/commons/a/ae/Bus_icon_white_and_blue_background.svg" rel="shortcut icon" />
+    <style>
+        #navbar {
+              overflow: hidden;
+              background-color: #D46E68;
+            }
+            
+            #navbar a {
+              float: left;
+              display: block;
+              color: #f2f2f2;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+              font-size: 17px;
+            }
+            
+            #navbar a:hover {
+              background-color: #EFA9A5;
+              color: black;
+            }
+            
+            #navbar a.active {
+              background-color: #d44038;
+              color: white;
+            }
+            
+            .content {
+              padding: 16px;
+            }
+            
+            .sticky {
+              position: fixed;
+              top: 0;
+              width: 100%;
+            }
+            
+            .sticky + .content {
+              padding-top: 60px;
+            }
+        body {background-color: #fdf2e3;}
+        h1 {
+            color: #0e4e2f;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bolder;
+            font-size: 600%;
+            text-align: center;
+        }
+        p {
+            color: #0e4e2f;
+            font-family: 'Trebuchet MS';
+            font-size: 150%;
+            position: absolute;
+            left: 400px;
+            top: 250px;
+        }
+        h2 {
+            color: #0e4e2f;
+            font-family: 'Trebuchet MS';
+            font-size: 150%;
+        }
+        h3 {
+            color: #0e4e2f;
+            font-family: 'Trebuchet MS';
+            font-size: 200%;
+        }
+    </style>
+    <script>
+        function updateStatus() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var data = JSON.parse(xhr.responseText);
+                   
+                    document.getElementById("led_Light_status").innerHTML = data.led_Light_status;
+                    document.getElementById("led_Temp1_status").innerHTML = data.led_Temp1_status;
+                    document.getElementById("led_Temp2_status").innerHTML = data.led_Temp2_status;
+                    
+                    var s2light = data.RedLEDStatus === "On" ? "greenyellow" : "red";
+                    document.getElementById("s2light").style.color= s2light;
+                    
+                    var s2fan = data.RedLEDStatus === "On" ? "greenyellow" : "red";
+                    document.getElementById("s2fan").style.color= s2fan;
+                    
+                    var s2heater = data.RedLEDStatus === "On" ? "greenyellow" : "red";
+                    document.getElementById("s2heater").style.color= s2heater;
+                }
+            };
+            xhr.open("GET", "/status", true);
+            xhr.send();
+        }
+        setInterval(updateStatus, 1000); // Refresh every 1 second
+        </script>
+    <title>
+        Station 2
+    </title>
+</head>
+<body>
+    <div id="navbar">
+        <a class="active" href="index.html">Home</a>
+        <a href="busstoplist.html">Bus Stop list</a></a>
+        <a href="aboutus.html">About Us</a>
+    </div>
+    <h1>
+        Station 2
+    </h1>
+    <p>
+        date here
+        <br>
+        <br>
+        Temperature: ...
+        <br>
+        <br>
+        Capacity: ...
+    </p>
+    <h2 style="position: absolute; left: 700px; top: 250px">
+        Light Status:
+    </h2>
+    <h2 style="position: absolute; left: 400px; top: 450px">
+        Fan Status:
+    </h2>
+    <h2 style="position: absolute; left: 700px; top: 450px">
+        Heater Status:
+    </h2>
+    <h3 id="s2light" style="position: absolute; left: 745px; top: 275px; color: """+ led_Light_color +""";">
+        <strong id="led_Light_status">""" + led_Light_status + """</strong>
+    </h3>
+    <h3 id="s2fan" style="position: absolute; left: 435px; top: 475px; color: """ + led_Temp2_color + """;">
+        <strong id="led_Temp2_status">""" + led_Temp2_status + """</strong>
+    </h3>
+    <h3 id="s2heater" style="position: absolute; left: 745px; top: 475px; color: """ + led_Temp1_color + """;">
+        <strong id="led_Temp1_status">""" + led_Temp1_status + """</strong>
+    </h3>
+</body>
+</html>
+"""
     return html
+
+def aboutus():
+    html = """ <html>
+    <head>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- website little icon on the tab-->
+    <link href="https://upload.wikimedia.org/wikipedia/commons/a/ae/Bus_icon_white_and_blue_background.svg" rel="shortcut icon" />
+    <style>
+        #navbar {
+              overflow: hidden;
+              background-color: #D46E68;
+            }
+            
+            #navbar a {
+              float: left;
+              display: block;
+              color: #f2f2f2;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+              font-size: 17px;
+            }
+            
+            #navbar a:hover {
+              background-color: #EFA9A5;
+              color: black;
+            }
+            
+            #navbar a.active {
+              background-color: #d44038;
+              color: white;
+            }
+            
+            .content {
+              padding: 16px;
+            }
+            
+            .sticky {
+              position: fixed;
+              top: 0;
+              width: 100%;
+            }
+            
+            .sticky + .content {
+              padding-top: 60px;
+            }
+        body {background-color: #fdf2e3;}
+        h1 {
+            color: #d44038;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bolder;
+            font-size: 600%;
+            text-align: center;
+        }
+        p {
+            color: #702521;
+            font-family: 'Trebuchet MS';
+            font-size: 150%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <a class="active" href="index.html">Home</a>
+        <a href="busstoplist.html">Bus Stop list</a></a>
+        <a href="aboutus.html">About Us</a>
+    </div>
+    <h1>
+        About Us
+    </h1>
+    <p>
+        Our goal is to integrate smart bus stops across Victoria to encourage.........
+    </p>
+</body>
+</html>"""
+    return html
+
 # --------------------------------------------------------------------
 # This section could be tweaked to return status of multiple sensors or actuators.
 
@@ -442,6 +823,12 @@ while True:
         conn.sendall(response)
     elif request.find("/station2.html")==6:
         response = get_station2()
+        conn.send("HTTP/1.1 200 OK\n")
+        conn.send("Content-Type: text/html\n")
+        conn.send("Connection: close\n\n")
+        conn.sendall(response)
+    elif request.find("/aboutus.html")==6:
+        response = aboutus()
         conn.send("HTTP/1.1 200 OK\n")
         conn.send("Content-Type: text/html\n")
         conn.send("Connection: close\n\n")
