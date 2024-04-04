@@ -46,6 +46,33 @@ def get_temperature():
     temp = 1 / (((math.log(Rt / Ro)) / 3950) + (1 / (273.15 + 25)))
     return temp - 307.06 # Return temperature in Celsius
 
+def get_led_IR_status():
+    return "On" if led_IR.value() == 1 else "Off"
+# Note that the function returns the status.
+
+def get_led_light_status():
+    return "On" if led_light.value() == 1 else "Off"
+
+def get_led_Temp1_status():
+    return "On" if led_Temp1.value() = 1 else "Off"
+
+def get_led_Temp2_status():
+    return "On" if led_Temp2.value() = 1 else "Off"
+
+# Define a function to periodically check the ADC pin and control the red LED pin.
+def check_adc_and_control_led_light():
+    global led_light_status  # Declare led_light_status as global.
+    adc_light = machine.ADC(28) # Configure GP26 as ADC pin.
+    
+    global led_IR_status
+    adc_IR = machine.ADC(26)
+
+    global led_Temp1_status
+    adc_IR = machine.ADC(27)
+
+    global led_Temp2_status
+    adc_IR = machine.ADC(27)
+    
 # Main loop
 while True:
     
