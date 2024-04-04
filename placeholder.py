@@ -25,7 +25,14 @@
             margin-left: 10px;
         }
     </style>
-    
+    <script>
+        document.getElementById("s1light").innerHTML = data.RedLEDStatus;
+        document.getElementById("s1fan").innerHTML = data.RedLEDStatus;
+        document.getElementById("s1heater").innerHTML = data.RedLEDStatus;
+        document.getElementById("s2light").innerHTML = data.RedLEDStatus;
+        document.getElementById("s2fan").innerHTML = data.RedLEDStatus;
+        document.getElementById("s2heater").innerHTML = data.RedLEDStatus;
+    </script>
     
     </head>
     <body>
