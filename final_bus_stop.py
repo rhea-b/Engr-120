@@ -817,7 +817,10 @@ def aboutus():
 # The function retuns status. 
 def get_status():
     status = {
-        "RedLEDStatus": redLED_status,
+        "ledLightstatus": led_Light_status,
+        "ledIRstatus": led_IR_status,
+        "ledTemp1status": led_Temp1_status,
+        "ledTemp2status": led_Temp2_status,
         # You will add lines of code if status of more sensors is needed.
     }
     return json.dumps(status)
@@ -855,7 +858,7 @@ while True:
         conn.send("Connection: close\n\n")
         conn.sendall(response)
     #main webpage
-    elif:
+    elif request.find("/index.html")==6:
         response = main_page()
         conn.send("HTTP/1.1 200 OK\n")
         conn.send("Content-Type: text/html\n")
