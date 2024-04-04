@@ -227,17 +227,147 @@ def main_page():
     return html
 
 def busstoplist():
-    redLED_status = get_redLED_status()
-    LED_color = "red" if redLED_status == "On" else "green"
+    led_Light_status = get_led_Light_status()
+    led_Temp1_status = get_led_Temp1_status()
+    led_Temp2_status = get_led_Temp2_status()
+    led_Light_color = "red" if led_Light_status == "On" else "green"
+    led_Temp1_color = "red" if led_Temp1_status == "On" else "green"
+    led_Temp2_color = "red" if led_Temp2_status == "On" else "green"
     html = """
     
     """
     return html
 
 def get_station1():
-    redLED_status = get_redLED_status()
-    LED_color = "red" if redLED_status == "On" else "green"
-    html = """
+    led_Light_status = get_led_Light_status()
+    led_Temp1_status = get_led_Temp1_status()
+    led_Temp2_status = get_led_Temp2_status()
+    led_Light_color = "red" if led_Light_status == "On" else "green"
+    led_Temp1_color = "red" if led_Temp1_status == "On" else "green"
+    led_Temp2_color = "red" if led_Temp2_status == "On" else "green"
+
+    html = """<html>
+<head>
+    <title>Station 1</title>
+        <!-- i do not know what this does but slay-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- website little icon on the tab-->
+        <link href="https://upload.wikimedia.org/wikipedia/commons/a/ae/Bus_icon_white_and_blue_background.svg" rel="shortcut icon" />
+    <style>
+        /*css for navigation bar*/
+        #navbar {
+              overflow: hidden;
+              background-color: #D46E68;
+            }
+            
+            #navbar a {
+              float: left;
+              display: block;
+              color: #f2f2f2;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+              font-size: 17px;
+            }
+            
+            #navbar a:hover {
+              background-color: #EFA9A5;
+              color: black;
+            }
+            
+            #navbar a.active {
+              background-color: #d44038;
+              color: white;
+            }
+            
+            .content {
+              padding: 16px;
+            }
+            
+            .sticky {
+              position: fixed;
+              top: 0;
+              width: 100%;
+            }
+            
+            .sticky + .content {
+              padding-top: 60px;
+            }
+        /*css for website texts*/
+        body {background-color: #fdf2e3;}
+        h1 {
+            color: #0e4e2f;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bolder;
+            font-size: 600%;
+            text-align: center;
+        }
+        p {
+            color: #0e4e2f;
+            font-family: 'Trebuchet MS';
+            font-size: 150%;
+            position: absolute;
+            left: 400px;
+            top: 250px;
+        }
+        h2 {
+            color: #0e4e2f;
+            font-family: 'Trebuchet MS';
+            font-size: 150%;
+        }
+        h3 {
+            color: #0e4e2f;
+            font-family: 'Trebuchet MS';
+            font-size: 200%;
+        }
+    </style>
+    
+    <title>
+        Station 1
+    </title>
+</head>
+        <body>
+            <!--navigation bar-->
+            <div id="navbar">
+                <a class="active" href="index.html">Home</a>
+                <a href="busstoplist.html">Bus Stop list</a></a>
+                <a href="aboutus.html">About Us</a>
+            </div>
+            <!--big station text-->
+            <h1>
+                Station 1
+            </h1>
+            <!-- where data is inserted-->
+            <p>
+                date here
+                <br>
+                <br>
+                Temperature: ...
+                <br>
+                <br>
+                Capacity: ...
+            </p>
+            <!--light fan and heater status for different weather conditions-->
+            <h2 style="position: absolute; left: 700px; top: 250px">
+                Light Status:
+            </h2>
+            <h2 style="position: absolute; left: 400px; top: 450px">
+            Fan Status:
+            </h2>
+            <h2 style="position: absolute; left: 700px; top: 450px">
+                Heater Status:
+            </h2>
+            <h3 id="s1light" style="position: absolute; left: 745px; top: 275px; color: """+ led_Light_color +""";">
+                <strong id="led_Light_status">""" + led_Light_status + """</strong>
+            </h3>
+            <h3 id="s1fan" style="position: absolute; left: 435px; top: 475px; color: """+ led_Temp2_color +""";">
+                <strong id="led_Temp2_status">""" + led_Temp2_status + """</strong>
+            </h3>
+            <h3 id="s1heater" style="position: absolute; left: 745px; top: 475px; color: """+ led_Temp1_color +"""">
+                <strong id="led_Temp1_status">""" + led_Temp1_status + """</strong>
+            </h3>
+        </body>
+    </html>
     """
     return html
 
