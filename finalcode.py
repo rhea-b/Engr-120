@@ -78,44 +78,99 @@ print(ap.ifconfig())
 # Below given code defines the web page response. Your html code must be used in this section.
 # 
 # Define HTTP response
-def web_page():
+def main_page():
     redLED_status = get_redLED_status()
-    LED_color = "red" if redLED_status == "On" else "grey"
-    greenLED = "green" if redLED_status == "Off" else "blue"
+    LED_color = "red" if redLED_status == "On" else "greenyellow"
     
 # Modify the html portion appropriately.
 # Style section below can be changed.
 # In the Script section some changes would be needed (mostly updating variable names and adding lines for extra elements). 
 
-    html = """<html><head>
-    <title>Pico Web Server</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="data:,">
-    <style>
-        html {
-            font-family: Helvetica;
-            text-align: center;
-            background-color: #b0b2b2;
-        }
-        h1 {
-            color: #0F3376;
-            padding: 2vh;
-        }
-        p {
-            font-size: 1.5rem;
-        }
-        
+    html = """<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="Adeline Theodora, Emily Simons-Lane, and Rhea Bona" />
+        <title>Bus Stop</title>
+        <!-- i do not know what this does but slay-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- website little icon on the tab-->
+        <link href="https://upload.wikimedia.org/wikipedia/commons/a/ae/Bus_icon_white_and_blue_background.svg" rel="shortcut icon" />
+        <!-- link to css-->
+        <link href="CSS.css" rel="stylesheet" />
+        <style>
+          /*css for navigation bar*/
+            #navbar {
+              overflow: hidden;
+              background-color: #D46E68;
+            }
+            
+            #navbar a {
+              float: left;
+              display: block;
+              color: #f2f2f2;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+              font-size: 17px;
+            }
+            
+            #navbar a:hover {
+              background-color: #EFA9A5;
+              color: black;
+            }
+            
+            #navbar a.active {
+              background-color: #d44038;
+              color: white;
+            }
+            
+            .content {
+              padding: 16px;
+            }
+            
+            .sticky {
+              position: fixed;
+              top: 0;
+              width: 100%;
+            }
+            
+            .sticky + .content {
+              padding-top: 60px;
+            }
 
-        .circle {
-            width: 20px;
-            height: 20px;
+            /*css for maps and pins*/
+            .img-map{
+                float:center;
+                position:relative;
+            }
+            .img-pinsstation1{
+                position: absolute;
+                top:7%;
+                right:15%;
+            }
+            .img-pinsstation2{
+                position: absolute;
+                top:48%;
+                right:38%;
+            }
+            .circle1 {
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: inline-block;
             margin-left: 10px;
         }
-    </style>
-    
-    <script>
+            .circle2 {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        </style>
+        <script>
         function updateStatus() {
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
@@ -129,22 +184,67 @@ def web_page():
                     document.getElementById("greenLED").style.backgroundColor = greenLED;
                     var peepeepoopoo = data.RedLEDStatus === "Off" ? "green" : "red";
                     document.getElementById("textonoff").style.color= peepeepoopoo;
+
+                    document.getElementById("station1map").style.backgroundColor = station1map;
+                    var station1map = data.LED_IR_status === "On" ? "red" : "greenyellow";
+                    document.getElementById("station2map").style.backgroundColor = station2map;
+                    var station2map = data.LED_IR_status === "On" ? "greenyellow" : "red";
                 }
             };
             xhr.open("GET", "/status", true);
             xhr.send();
         }
         setInterval(updateStatus, 1000); // Refresh every 1 second
-    </script>
+        </script>
     </head>
-    <body>
-     
-    <p>RedLED Status: <p id="textonoff" style="color: """ + LED_color + """;" ><strong id="RedLEDStatus">""" + redLED_status + """</strong></p>
-    <div class="circle" id="buzzerIndicator" style="background-color: """ + LED_color + """;"></div></p>
-    <div class="circle" id="greenLED" style="background-color: """ + greenLED + """;"></div></p>    
-  
-    </body>
-    </html>"""
+    <body class="background">
+        <!--navigation bar-->
+        <div id="navbar">
+            <a class="active" href="index.html">Home</a>
+            <a href="busstoplist.html">Bus Stop list</a></a>
+            <a href="aboutus.html">About Us</a>
+        </div>
+        <!--header-->
+        <h1 class="heading-word">Victoria Bus</h1>
+        <!--map component-->
+        <div class="img-map" >
+        <img src="victoria-downtown.gif" alt ="victoria map" class="map-padding">
+        <!--pin for station 1-->
+        <div class="img-pinsstation1 image-pins">
+            <a href="station1.html">
+                <div class="circle1" id="station1map" style="background-color:"""+ LED_color +""";padding:5%;"></div>
+            </a>
+        </div>
+        <!--pin for station 2-->
+        <div class="img-pinsstation2">
+            <a href="station2.html">
+                <div class="circle2" id="station2map" style="background-color: """+ LED_color +""";padding:5%;"></div>
+            </a>
+        </div>
+        </div>
+        </body>
+        </html>"""
+    return html
+
+def busstoplist():
+    redLED_status = get_redLED_status()
+    LED_color = "red" if redLED_status == "On" else "green"
+    html = """
+    
+    """
+    return html
+
+def get_station1():
+    redLED_status = get_redLED_status()
+    LED_color = "red" if redLED_status == "On" else "green"
+    html = """
+    """
+    return html
+
+def busstoplist():
+    redLED_status = get_redLED_status()
+    LED_color = "red" if redLED_status == "On" else "green"
+    html = """"""
     return html
 # --------------------------------------------------------------------
 # This section could be tweaked to return status of multiple sensors or actuators.
@@ -190,14 +290,34 @@ while True:
         conn.send("Content-Type: application/json\n")
         conn.send("Connection: close\n\n")
         conn.sendall(response)
-    else:
-        response = web_page()
+    #main webpage
+    elif:
+        response = main_page()
+        conn.send("HTTP/1.1 200 OK\n")
+        conn.send("Content-Type: text/html\n")
+        conn.send("Connection: close\n\n")
+        conn.sendall(response)
+     #bus stop list
+    elif request.find("/busstoplist.html")==6:
+        response = busstoplist()
+        conn.send("HTTP/1.1 200 OK\n")
+        conn.send("Content-Type: text/html\n")
+        conn.send("Connection: close\n\n")
+        conn.sendall(response)
+    elif request.find("/station1.html")==6:
+        response = get_station1()
+        conn.send("HTTP/1.1 200 OK\n")
+        conn.send("Content-Type: text/html\n")
+        conn.send("Connection: close\n\n")
+        conn.sendall(response)
+    elif request.find("/station2.html")==6:
+        response = get_station2()
         conn.send("HTTP/1.1 200 OK\n")
         conn.send("Content-Type: text/html\n")
         conn.send("Connection: close\n\n")
         conn.sendall(response)
     conn.close()
-
+   
 
 
 
