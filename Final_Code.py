@@ -79,56 +79,54 @@ def check_adc_and_control_led_Light():
     adc_Temp2 = machine.ADC(27)
     
 # Main loop
-while True:
+    while True:
     
     # beginning of IR sensor code in loop
     # Read analog value from sensor then print it 
-    print(sensor_IR.read_u16())
+        print(sensor_IR.read_u16())
     
     # Sleep/wait for time specified
-    time.sleep(0.5)
+        time.sleep(0.5)
     
     # Turn on IR emitter
-    emitter_IR.value(1)
+        emitter_IR.value(1)
     
     # Check if the analog reading exce eds the specified threshold value 
     # Note that this threshold value may need to be changed depending on the environment the sensor is in
-    if(sensor_IR.read_u16()>336):
-        
-       
-        led_IR.value(1) # If threshold is exceeded, turn LED on (this means the sensor is blocked)
-    else:
-        led_IR.value(0) # If threshold is not exceeded, turn off LED
+        if(sensor_IR.read_u16()>336):
+            led_IR.value(1) # If threshold is exceeded, turn LED on (this means the sensor is blocked)
+        else:
+            led_IR.value(0) # If threshold is not exceeded, turn off LED
         
   
- # Beginning of light sensor code in loop
+    # Beginning of light sensor code in loop
  
-    reading = sensor.read_u16()*conversion_factor
+        reading = sensor.read_u16()*conversion_factor
     
-    if (reading < 3):
-        led_Light.value(1) #led on
-    else:
-        led_Light.value(0) #led off
+        if (reading < 3):
+            led_Light.value(1) #led on
+        else:
+            led_Light.value(0) #led off
         
   # Beginning of Temp sensor code in loop
 
-    temp = get_temperature()
+        temp = get_temperature()
     
     
 
     
-    if (temp < 27): #10k Rt should be equal to around 25 degrees celcius, if less heater should turn on and fan turn off
-       #lower on circut
-        led_Temp1.value(1) #heater on
-        led_Temp2.value(0) #fan off
+        if (temp < 27): #10k Rt should be equal to around 25 degrees celcius, if less heater should turn on and fan turn off
+        #lower on circut
+            led_Temp1.value(1) #heater on
+            led_Temp2.value(0) #fan off
         
-    elif (temp > 30):
-        led_Temp1.value(0) #heater on
-        led_Temp2.value(1) #fan off
+        elif (temp > 30):
+            led_Temp1.value(0) #heater on
+            led_Temp2.value(1) #fan off
         
-    else:
-        led_Temp1.value(0) #heater on
-        led_Temp2.value(0) #fan off
+        else:
+            led_Temp1.value(0) #heater on
+            led_Temp2.value(0) #fan off
         
 # --------------------------------------------------------------------------
 
@@ -913,13 +911,3 @@ while True:
         conn.send("Connection: close\n\n")
         conn.sendall(response)
     conn.close()
-   
-
-
-
-
-
-        
-    
-
-
