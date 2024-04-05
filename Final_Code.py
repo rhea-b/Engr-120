@@ -83,7 +83,7 @@ def check_adc_and_control_led_Light():
     
     # beginning of IR sensor code in loop
     # Read analog value from sensor then print it 
-        print(sensor_IR.read_u16())
+        
     
     # Sleep/wait for time specified
         time.sleep(0.5)
@@ -97,7 +97,10 @@ def check_adc_and_control_led_Light():
             led_IR.value(1) # If threshold is exceeded, turn LED on (this means the sensor is blocked)
         else:
             led_IR.value(0) # If threshold is not exceeded, turn off LED
-        
+            
+        led_IR_status = get_led_IR_status()  # Update LED_light_status
+        print("IR LED Status:", led_IR_status)
+        time.sleep(.5) # wait for 1 second.
   
     # Beginning of light sensor code in loop
  
@@ -107,6 +110,10 @@ def check_adc_and_control_led_Light():
             led_Light.value(1) #led on
         else:
             led_Light.value(0) #led off
+            
+        led_Light_status = get_led_Light_status()  # Update LED_light_status
+        print("Light LED Status:", led_Light_status)
+        time.sleep(0.5) # wait for 1 second.
         
   # Beginning of Temp sensor code in loop
 
@@ -127,6 +134,14 @@ def check_adc_and_control_led_Light():
         else:
             led_Temp1.value(0) #heater on
             led_Temp2.value(0) #fan off
+            
+        led_Temp1_status = get_led_Temp1_status()  # Update LED_light_status
+        print("Heater LED Status:", led_Temp1_status)
+        time.sleep(0.5) # wait for 1 second.
+        
+        led_Temp2_status = get_led_Temp2_status()  # Update LED_light_status
+        print("Fan LED Status:", led_Temp2_status)
+        time.sleep(0.5) # wait for 1 second.
         
 # --------------------------------------------------------------------------
 
@@ -152,13 +167,15 @@ print(ap.ifconfig())
 # 
 # Define HTTP response
 def main_page():
+    image_url = "http://britishcolumbia.com/images/maps/victoria-downtown.gif"
     led_IR_status = get_led_IR_status()
     LED_color = "red" if led_IR_status == "On" else "greenyellow"
     
 # Modify the html portion appropriately.
 # Style section below can be changed.
 # In the Script section some changes would be needed (mostly updating variable names and adding lines for extra elements). 
-
+    
+    
     html = """<html>
     <head>
         <meta charset="utf-8" />
@@ -266,7 +283,7 @@ def main_page():
     <body class="background">
         <!--navigation bar-->
         <div id="navbar">
-            <a class="active" href="index.html">Home</a>
+            <a class="active" href="main_page.html">Home</a>
             <a href="busstoplist.html">Bus Stop list</a></a>
             <a href="aboutus.html">About Us</a>
         </div>
@@ -274,7 +291,7 @@ def main_page():
         <h1 class="heading-word">Victoria Bus</h1>
         <!--map component-->
         <div class="img-map" >
-        <img src="victoria-downtown.gif" alt ="victoria map" class="map-padding">
+        <img src="{image_url}" alt ="victoria map" class="map-padding">
         <!--pin for station 1-->
         <div class="img-pinsstation1 image-pins">
             <a href="station1.html">
@@ -410,7 +427,7 @@ def busstoplist():
     <body class="background">
     <!--navigation bar-->
     <div id="navbar">
-        <a class="active" href="index.html">Home</a>
+        <a class="active" href="main_page.html">Home</a>
         <a href="busstoplist.html">Bus Stop list</a></a>
         <a href="aboutus.html">About Us</a>
     </div>
@@ -538,13 +555,13 @@ def get_station1():
                     document.getElementById("led_Temp1_status").innerHTML = data.led_Temp1_status;
                     document.getElementById("led_Temp2_status").innerHTML = data.led_Temp2_status;
 
-                    var s1light = data.RedLEDStatus === "On" ? "greenyellow" : "red";
+                    var s1light = data.led_Light_status === "On" ? "greenyellow" : "red";
                     document.getElementById("s1light").style.color= s1light;
 
-                    var s1fan = data.RedLEDStatus === "On" ? "greenyellow" : "red";
+                    var s1fan = data.led_Temp2_status === "On" ? "greenyellow" : "red";
                     document.getElementById("s1fan").style.color= s1fan;
 
-                    var s1heater = data.RedLEDStatus === "On" ? "greenyellow" : "red";
+                    var s1heater = data.led_Temp1_status === "On" ? "greenyellow" : "red";
                     document.getElementById("s1heater").style.color= s1heater;
                 }
             };
@@ -561,7 +578,7 @@ def get_station1():
         <body>
             <!--navigation bar-->
             <div id="navbar">
-                <a class="active" href="index.html">Home</a>
+                <a class="active" href="main_page.html">Home</a>
                 <a href="busstoplist.html">Bus Stop list</a></a>
                 <a href="aboutus.html">About Us</a>
             </div>
@@ -694,13 +711,13 @@ def get_station2():
                     document.getElementById("led_Temp1_status").innerHTML = data.led_Temp1_status;
                     document.getElementById("led_Temp2_status").innerHTML = data.led_Temp2_status;
                     
-                    var s2light = data.RedLEDStatus === "On" ? "greenyellow" : "red";
+                    var s2light = data.led_Light_status === "On" ? "greenyellow" : "red";
                     document.getElementById("s2light").style.color= s2light;
                     
-                    var s2fan = data.RedLEDStatus === "On" ? "greenyellow" : "red";
+                    var s2fan = data.led_Temp2_status === "On" ? "greenyellow" : "red";
                     document.getElementById("s2fan").style.color= s2fan;
                     
-                    var s2heater = data.RedLEDStatus === "On" ? "greenyellow" : "red";
+                    var s2heater = data.led_Temp1_status === "On" ? "greenyellow" : "red";
                     document.getElementById("s2heater").style.color= s2heater;
                 }
             };
@@ -715,7 +732,7 @@ def get_station2():
 </head>
 <body>
     <div id="navbar">
-        <a class="active" href="index.html">Home</a>
+        <a class="active" href="main_page.html">Home</a>
         <a href="busstoplist.html">Bus Stop list</a></a>
         <a href="aboutus.html">About Us</a>
     </div>
@@ -817,7 +834,7 @@ def aboutus():
 </head>
 <body>
     <div id="navbar">
-        <a class="active" href="index.html">Home</a>
+        <a class="active" href="main_page.html">Home</a>
         <a href="busstoplist.html">Bus Stop list</a></a>
         <a href="aboutus.html">About Us</a>
     </div>
@@ -875,7 +892,7 @@ while True:
     if request.find("/status") == 6:
         response = get_status()
         conn.send("HTTP/1.1 200 OK\n")
-        conn.send("Content-Type: application/json\n")
+        conn.send("Content-Type: application/html\n")
         conn.send("Connection: close\n\n")
         conn.sendall(response)
     #main webpage
